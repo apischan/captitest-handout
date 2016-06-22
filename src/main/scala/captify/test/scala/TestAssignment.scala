@@ -4,7 +4,6 @@ import scala.util.Try
 import SparseIterators._
 
 import scala.collection.mutable
-import scala.collection.mutable.ArrayBuffer
 
 /**
  * Here are the functions to fill in.
