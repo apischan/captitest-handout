@@ -106,7 +106,7 @@ object TestAssignment {
    */
   def approximatesFor(sparsityMin: Int, sparsityMax: Int, extent: Int): Seq[(Int,Try[Double])] = {
     for {
-      idx <- { sparsityMin to sparsityMax }
+      idx <- sparsityMin to sparsityMax
       sparsity = Try(approximateSparsity(idx, extent))
     } yield (idx, sparsity)
   }
