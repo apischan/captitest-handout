@@ -73,6 +73,9 @@ object TestAssignment {
     val merged: Iterator[BigInt] = mergeIterators(Seq(iteratorFromOne, iteratorFromOne, iteratorFromOne))
 
     sampleAfter(merged, 9, 10).foreach(println)
+
+    approximatesFor(2, 4, 1000).foreach(println)
+
   }
 
   /**
@@ -101,6 +104,12 @@ object TestAssignment {
    *
    * @return Seq of (Sparsity, Try[Approximation]) pairs
    */
-  def approximatesFor(sparsityMin: Int, sparsityMax: Int, extent: Int): Seq[(Int,Try[Double])] = ???
+  def approximatesFor(sparsityMin: Int, sparsityMax: Int, extent: Int): Seq[(Int,Try[Double])] = {
+    for {
+      idx <- { sparsityMin to sparsityMax }
+      sparsity = Try(approximateSparsity(idx, extent))
+    } yield (idx, sparsity)
+  }
+
 
 }
