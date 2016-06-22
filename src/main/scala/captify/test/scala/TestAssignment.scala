@@ -1,8 +1,10 @@
 package captify.test.scala
 
 import scala.util.Try
-
 import SparseIterators._
+
+import scala.collection.mutable
+import scala.collection.mutable.ArrayBuffer
 
 /**
  * Here are the functions to fill in.
@@ -48,7 +50,31 @@ object TestAssignment {
    * @param iterators to be merged
    * @return Iterator with all elements and ascending sorting retained
    */
-  def mergeIterators(iterators: Seq[Iterator[BigInt]]): Iterator[BigInt] = ???
+  def mergeIterators(iterators: Seq[Iterator[BigInt]]): Iterator[BigInt] = {
+    new Iterator[BigInt] {
+      val embedded = iterators
+      val candidates: mutable.Buffer[BigInt] = (for {
+        iterator <- iterators
+        if iterator.hasNext
+      } yield iterator.next()).toBuffer
+
+      override def hasNext: Boolean =
+        embedded.exists(_.hasNext)
+
+      override def next(): BigInt = {
+        val minValue = candidates.min
+        val minIdx = candidates.indexOf(minValue)
+        candidates(minIdx) = embedded(minIdx).next()
+        minValue
+      }
+    }
+  }
+
+  def main(args: Array[String]) {
+    val merged: Iterator[BigInt] = mergeIterators(Seq(iteratorFromOne, iteratorFromOne, iteratorFromOne))
+
+    sampleAfter(merged, 9, 10).foreach(println)
+  }
 
   /**
    * How much elements, on average, are included in sparse stream from the general sequence
