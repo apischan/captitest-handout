@@ -37,7 +37,7 @@ class TestAssignmentSpec extends FlatSpec with Matchers {
     val expected = (sparseMin to sparseMax) map {
       sparsity => (sparsity, Try(approximateSparsity(sparsity, extent)))
     }
-    val actual = approximatesFor(2, 4, extent)
+    val actual = approximatesFor(sparseMin, sparseMax, extent)
     actual should be (expected)
   }
 
