@@ -20,9 +20,8 @@ object TestAssignment {
    * @param sampleSize quantity of elements returned
    * @return sampleAfter(iteratorFromOne, 1, 2) should be same as to Seq[BigInt](2,3,4).toIterator 
    */
-  def sampleAfter(iterator: Iterator[BigInt], after: Int, sampleSize: Int): Iterator[BigInt] = {
+  def sampleAfter(iterator: Iterator[BigInt], after: Int, sampleSize: Int): Iterator[BigInt] =
     iterator.slice(after, after + sampleSize + 1)
-  }
 
   /**
    * Get value by index from given iterator.
@@ -69,15 +68,6 @@ object TestAssignment {
     }
   }
 
-  def main(args: Array[String]) {
-    val merged: Iterator[BigInt] = mergeIterators(Seq(iteratorFromOne, iteratorFromOne, iteratorFromOne))
-
-    sampleAfter(merged, 9, 10).foreach(println)
-
-    approximatesFor(2, 4, 1000).foreach(println)
-
-  }
-
   /**
    * How much elements, on average, are included in sparse stream from the general sequence
    * @param sparsity to analyze
@@ -110,6 +100,5 @@ object TestAssignment {
       sparsity = Try(approximateSparsity(idx, extent))
     } yield (idx, sparsity)
   }
-
 
 }
