@@ -21,7 +21,12 @@ class TestAssignmentSpec extends FlatSpec with Matchers {
     result should be (6)
   }
 
-
+  "mergeIterators" should "return merged iterators from Seq(iterators)" in {
+    val iterators = Seq(iteratorFromOne, iteratorFromOne)
+    val result = mergeIterators(iterators)
+    val expected = Seq[BigInt](1, 1, 2, 2, 3, 3).toIterator
+    iteratorsValuesEquals(6)(result, expected)
+  }
 
   def iteratorsValuesEquals(amount: Int)(result: Iterator[BigInt], expected: Iterator[BigInt]) =
     for(_ <- 0 until amount)
