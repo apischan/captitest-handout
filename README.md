@@ -3,6 +3,7 @@ which have 2 cores and 4 threads (taken from /proc/cpuinfo file and spec in inte
 
 Representative output:
 ======================
+<pre><code>
 sampled merged iterator after 1000000 in 304 millis:
 960790
 960792
@@ -61,3 +62,4 @@ approximate sparsities in 466619 millis by 10000000 elems with 4 cores:
 (22,Success(0.0062133264811940455))
 (23,Success(0.003446775528223261))
 (24,Success(0.002332971054579198))
+</code></pre>
